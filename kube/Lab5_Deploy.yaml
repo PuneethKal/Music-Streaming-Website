@@ -1,0 +1,259 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: songdb-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: songdb
+spec:
+  selector:
+    app: songdb
+  ports:
+    - port: 3306
+      targetPort: 3306
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: songdb
+spec:
+  selector:
+    matchLabels:
+      app: songdb
+  template:
+    metadata:
+      labels:
+        app: songdb
+    spec:
+      containers:
+        - name: songdb
+          image: pkallem1234/coe692:songdb
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: storage
+              mountPath: /data/songdb
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: songdb-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: playlistdb-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: playlistdb
+spec:
+  selector:
+    app: playlistdb
+  ports:
+    - port: 3306
+      targetPort: 3306
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: playlistdb
+spec:
+  selector:
+    matchLabels:
+      app: playlistdb
+  template:
+    metadata:
+      labels:
+        app: playlistdb
+    spec:
+      containers:
+        - name: playlistdb
+          image: pkallem1234/coe692:playlistdb
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: storage
+              mountPath: /data/playlistdb
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: playlistdb-pvc
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: accountdb-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: accountdb
+spec:
+  selector:
+    app: accountdb
+  ports:
+    - port: 3306
+      targetPort: 3306
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: accountdb
+spec:
+  selector:
+    matchLabels:
+      app: accountdb
+  template:
+    metadata:
+      labels:
+        app: accountdb
+    spec:
+      containers:
+        - name: accountdb
+          image: pkallem1234/coe692:accountdb
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: storage
+              mountPath: /data/accountdb
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: accountdb-pvc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: playlist
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: playlist
+  template:
+    metadata:
+      labels:
+        app: playlist
+    spec:
+      containers:
+        - name: playlist
+          image: pkallem1234/coe692:playlistWebApp
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_URL
+              value: playlistdb:3306
+            - name: kubeMQAddress
+              value: 10.24.14.133:50000
+          imagePullPolicy: Always
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: song
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: song
+  template:
+    metadata:
+      labels:
+        app: song
+    spec:
+      containers:
+        - name: song
+          image: pkallem1234/coe692:songWebApp
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_URL
+              value: songdb:3306
+            - name: kubeMQAddress
+              value: 10.24.14.133:50000
+          imagePullPolicy: Always
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: pkallem1234/coe692:frontendWebApp
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_URL
+              value: accountdb:3306
+            - name: kubeMQAddress
+              value: 10.24.14.133:50000
+            - name: songService
+              value: song:80
+            - name: playlistService
+              value: playlist:80
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: playlist
+spec:
+  selector:
+    app: playlist
+  ports:
+    - port: 80
+      targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: song
+spec:
+  selector:
+    app: song
+  ports:
+    - port: 80
+      targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  selector:
+    app: frontend
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: LoadBalancer

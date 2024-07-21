@@ -1,0 +1,10 @@
+/home/student/Documents/COE628_Lab5/FrontendService/src/main/java/ryerson/ca/helper/Song.java
+/home/student/Documents/COE628_Lab5/FrontendService/src/main/java/ryerson/ca/helper/Playlist.java
+/home/student/Documents/COE628_Lab5/FrontendService/src/main/java/ryerson/ca/helper/PlaylistXML.java
+/home/student/Documents/COE628_Lab5/FrontendService/src/main/java/ryerson/ca/business/Business.java
+/home/student/Documents/COE628_Lab5/FrontendService/src/main/java/ryerson/ca/frontend/FrontEnd.java
+/home/student/Documents/COE628_Lab5/FrontendService/src/main/java/ryerson/ca/frontend/Authenticate.java
+/home/student/Documents/COE628_Lab5/FrontendService/src/main/java/ryerson/ca/persistence/Account_CRUD.java
+/home/student/Documents/COE628_Lab5/FrontendService/src/main/java/ryerson/ca/helper/UserInfo.java
+/home/student/Documents/COE628_Lab5/FrontendService/src/main/java/ryerson/ca/helper/SongsXML.java
+/home/student/Documents/COE628_Lab5/FrontendService/src/main/java/ryerson/ca/business/XMLParser.java

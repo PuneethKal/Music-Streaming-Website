@@ -1,0 +1,8 @@
+ryerson/ca/searchbook/business/SongBusiness.class
+ryerson/ca/searchbook/endpoint/ApplicationConfig.class
+ryerson/ca/searchbook/business/AddSongBusiness.class
+ryerson/ca/searchbook/helper/SongsXML.class
+ryerson/ca/searchbook/persistence/AddSong_CRUD.class
+ryerson/ca/searchbook/persistence/Song_CRUD.class
+ryerson/ca/searchbook/endpoint/SongResource.class
+ryerson/ca/searchbook/helper/Song.class

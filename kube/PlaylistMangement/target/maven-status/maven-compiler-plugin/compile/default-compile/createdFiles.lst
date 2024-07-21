@@ -1,0 +1,8 @@
+ryerson/ca/holdbook/business/AddPlaylistBusiness.class
+ryerson/ca/holdbook/endpoint/PlaylistResource.class
+ryerson/ca/holdbook/helper/Playlist.class
+ryerson/ca/holdbook/endpoint/ApplicationConfig.class
+ryerson/ca/holdbook/persistence/GetPlaylists_CRUD.class
+ryerson/ca/holdbook/business/GetPlaylistBusiness.class
+ryerson/ca/holdbook/helper/PlaylistXML.class
+ryerson/ca/holdbook/persistence/AddPlaylist_CRUD.class

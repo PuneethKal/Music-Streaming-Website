@@ -1,0 +1,74 @@
+<html>
+    <style>
+        body { background-color: #D4F2F7 } 
+        
+        h2{
+            background: #A8E5F0;
+        }
+        
+        table, th, td, tr {
+            border: 0px solid black;
+            border-collapse: collapse;
+        }
+        
+        th{
+            padding: 10px;
+            text-align: center;
+        }
+        td{
+           border: 2px solid black; 
+        }
+        
+        button{
+            border: 2px solid black;
+            text-align: center;
+            padding: 20px 50px;
+        }
+        button:hover {background-color: #D6EEEE;}
+        
+    </style>
+
+    <center><h2>Login to see your account!!</h2></center>
+
+    <form action="FrontEnd" method="post">
+
+        <table border="2" align="center" cellpadding="5" cellspacing="5">
+            
+            <tr><th> Enter username :</th></tr>
+            <tr>
+                <td> <input type="text" name="username" size="30" required> </td>
+            </tr>
+            
+            <tr><th> </th></tr>
+            
+            <tr><th> Enter password :</th></tr>
+            <tr>
+                
+                <td> <input type="password" name="passwrod" size="30" required> </td>
+            </tr>
+                
+            <tr><th> </th></tr>
+            
+            <tr> <th> Type of Account to login:</th> </tr>
+            <tr>
+                <td align="center">
+                    <select name="pageName" required>
+                    <option value="">--Please choose an option--</option>
+                    <option value="Listener">Listener</option>
+                    <option value="Artist">Artist</option>
+                    </select>     
+                </td>
+            </tr>
+            
+            <tr><th> </th></tr>
+            
+            <tr>
+                <td align="center">
+                    <button name="buttonvalue" type="submit" value=login> Login! </button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>

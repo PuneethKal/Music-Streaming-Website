@@ -1,0 +1,70 @@
+<html>
+    <style>
+        body { background-color: #D4F2F7 } 
+        
+        h1{
+            background: #A8E5F0;
+        }
+        
+        table, th, td, tr {
+            border: 0px solid black;
+            border-collapse: collapse;
+        }
+        
+        th,tr,td {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        button{
+            border: 2px solid black;
+            text-align: center;
+            padding: 20px 50px;
+        }
+        button:hover {background-color: #D6EEEE;}
+        
+    </style>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>WebMusicPlayer</title>   
+    </head>
+    
+    <center><h1>Welcome to WMP.</h1></center>
+    <center><h2>WUP is a free Web Music Player for everyone.</h2></center>
+    <center><h2>Browse our website or Create or Login to an account!!</h2></center>
+
+   
+    <table border="2" align="center" cellpadding="10">
+        <tr> 
+            <td>  
+                <form action="FrontEnd" method="post">
+                    <input type="hidden" name="pageName" value="wanttobrowse"/>
+                    <button name="buttonvalue" type="submit" value="browse"> Browse Music! </button>
+                </form>
+            </td> 
+        </tr>
+        <tr> 
+            <td>  
+
+                <form action="FrontEnd" method="post">
+                    <input type="hidden" name="pageName" value="wanttocreateaccount"/>
+                    <button name="buttonvalue" type="submit" value ="login"> Create Account! </button>
+                </form>
+
+            </td> 
+        </tr>
+        <tr> 
+            <td>  
+                <form action="FrontEnd" method="post">
+                    <input type="hidden" name="pageName" value="wanttologin"/>
+                    <button name="buttonvalue" type="submit" value ="login"> Login! </button>
+                </form>
+            </td> 
+        </tr>
+
+    </table>
+    
+
+</body>
+</html>
